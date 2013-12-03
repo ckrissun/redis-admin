@@ -33,9 +33,11 @@ func main() {
 			&revel.MethodType{
 				Name: "Index",
 				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "key", Type: reflect.TypeOf((*string)(nil)) },
 				},
 				RenderArgNames: map[int][]string{ 
-					10: []string{ 
+					64: []string{ 
+						"ret",
 					},
 				},
 			},

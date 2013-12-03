@@ -9,9 +9,11 @@ var App tApp
 
 
 func (_ tApp) Index(
+		key string,
 		) string {
 	args := make(map[string]string)
 	
+	revel.Unbind(args, "key", key)
 	return revel.MainRouter.Reverse("App.Index", args).Url
 }
 
