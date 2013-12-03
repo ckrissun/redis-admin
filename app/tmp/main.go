@@ -6,11 +6,8 @@ import (
 	"reflect"
 	"github.com/robfig/revel"
 	controllers0 "github.com/robfig/revel/modules/static/app/controllers"
-	_ "github.com/robfig/revel/modules/testrunner/app"
-	controllers1 "github.com/robfig/revel/modules/testrunner/app/controllers"
 	_ "github.com/yangsf5/redis-admin/app"
 	controllers "github.com/yangsf5/redis-admin/app/controllers"
-	tests "github.com/yangsf5/redis-admin/tests"
 )
 
 var (
@@ -36,7 +33,7 @@ func main() {
 					&revel.MethodArg{Name: "key", Type: reflect.TypeOf((*string)(nil)) },
 				},
 				RenderArgNames: map[int][]string{ 
-					64: []string{ 
+					85: []string{ 
 						"ret",
 					},
 				},
@@ -68,44 +65,9 @@ func main() {
 			
 		})
 	
-	revel.RegisterController((*controllers1.TestRunner)(nil),
-		[]*revel.MethodType{
-			&revel.MethodType{
-				Name: "Index",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-					46: []string{ 
-						"testSuites",
-					},
-				},
-			},
-			&revel.MethodType{
-				Name: "Run",
-				Args: []*revel.MethodArg{ 
-					&revel.MethodArg{Name: "suite", Type: reflect.TypeOf((*string)(nil)) },
-					&revel.MethodArg{Name: "test", Type: reflect.TypeOf((*string)(nil)) },
-				},
-				RenderArgNames: map[int][]string{ 
-					69: []string{ 
-						"error",
-					},
-				},
-			},
-			&revel.MethodType{
-				Name: "List",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-				},
-			},
-			
-		})
-	
 	revel.DefaultValidationKeys = map[string]map[int]string{ 
 	}
 	revel.TestSuites = []interface{}{ 
-		(*tests.AppTest)(nil),
 	}
 
 	revel.Run(*port)

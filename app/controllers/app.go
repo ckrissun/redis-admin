@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 	"github.com/robfig/revel"
 	"github.com/hoisie/redis"
 )
@@ -10,14 +12,34 @@ type App struct {
 	*revel.Controller
 }
 
+type Config struct {
+	RedisHost string
+	RedisPort int
+}
+
 type Ret struct {
 	Keys []string
 	CurKey string
 	Value []string
 }
 
+var (
+	config = &Config{}
+	client redis.Client
+)
+
+func init() {
+	if file, err := os.Open("./conf/custom.json"); err != nil {
+		panic(err)
+	} else {
+		decoder := json.NewDecoder(file)
+		decoder.Decode(config)
+	}
+
+	client.Addr = fmt.Sprintf("%s:%d", config.RedisHost, config.RedisPort)
+}
+
 func (c App) Index(key string) revel.Result {
-	var client redis.Client
 	Keys, err := client.Keys("*")
 	var ret Ret
 	ret.Keys = Keys
@@ -31,7 +53,6 @@ func (c App) Index(key string) revel.Result {
 		if err != nil {
 			c.Flash.Error(err.Error())
 		}
-		fmt.Println(kind)
 		switch string(kind) {
 		case "string":
 			val, _ := client.Get(key)
