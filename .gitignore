@@ -21,3 +21,5 @@ _testmain.go
 
 *.exe
 *.swp
+app/routes/routes.go
+app/tmp/*
