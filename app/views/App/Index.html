@@ -30,10 +30,11 @@
     </div>
     <div class="span10">
       Value of Key({{.ret.CurKey}}):<br/>
-      <br/>
-      {{range .ret.Value}}
-      {{.}}<br/>
-      {{end}}
+      <div class="hero-unit">
+        {{range .ret.Value}}
+        {{.}}<br/>
+        {{end}}
+      </div>
     </div>
   </div>
 </div>
