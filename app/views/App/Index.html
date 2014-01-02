@@ -20,17 +20,25 @@
   </div>
 </div>
 
-Keys:<br/>
-{{range .ret.Keys}}
-<a href="/?key={{.}}">{{.}}</a><br/>
-{{end}}
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      Keys:<br/>
+      {{range .ret.Keys}}
+      <a href="/?key={{.}}">{{.}}</a><br/>
+      {{end}}
+    </div>
+    <div class="span10">
+      Value of Key({{.ret.CurKey}}):<br/>
+      <br/>
+      {{range .ret.Value}}
+      {{.}}<br/>
+      {{end}}
+    </div>
+  </div>
+</div>
 
 <br/>
 <br/>
-Value of Key({{.ret.CurKey}}):<br/>
-<br/>
-{{range .ret.Value}}
-{{.}}<br/>
-{{end}}
 
 {{template "footer.html" .}}
