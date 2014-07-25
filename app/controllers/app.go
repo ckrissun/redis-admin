@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"github.com/robfig/revel"
+	"github.com/revel/revel"
 	"github.com/hoisie/redis"
 )
 
